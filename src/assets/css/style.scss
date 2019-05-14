@@ -1,0 +1,180 @@
+/**common styles**/
+
+*{
+	box-sizing:border-box;
+}
+html{
+  /*font-size: 37.5px; *//* 解决UC浏览，rem适配问题 https://www.cnblogs.com/chenrong/articles/4686601.html */
+}
+html,body{
+    width: 100%;
+    min-height: 100%;
+    touch-action: manipulation; /* IE11+ 禁止双击缩放，关于移动端300ms延迟：https://github.com/ftlabs/fastclick */  
+    -ms-touch-action: manipulation; /* IE10+ 禁止双击缩放 */
+}
+body{
+    font-family: Microsoft YaHei,STHeiti,Helvetica,Arial,sans-serif;
+    overflow-y: initial !important; /* music-ui的自带样式会导致body出现滚动条，然后导致scrollBehavior无法获取window的滚动位置 */
+}
+img{vertical-align: top;border: 0;}
+ul, li, ol{
+    list-style-type: none;
+}
+a, blockquote, body, button, code, dd, div, dl, dt, em, fieldset, form, h1, h2, h3, h4, h5, h6, html,iframe, img, input, label, li, object, ol, p, q, small, span, strong, table, tbody, td, th, tr, ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
+button, input, select, textarea { font-size: 100%; line-height:normal; }
+button, input, select, label{vertical-align:middle;}
+table{ border-collapse: collapse; border-spacing: 0; }
+input[type="button"],input[type="submit"],input[type="reset"]{cursor:pointer;}
+a{color: #333; outline: none; text-decoration: none;}
+a:focus{outline: none;}
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix {zoom:1; }
+em{
+    font-style: normal;
+}
+
+@import "variables.scss";
+
+body {
+    font-size:$font-size;
+    color:$font-color;
+    background: $body-color;
+    line-height: 1.4;
+}
+.area {
+    display: flex;
+    .containerLeft{
+        width:270px;
+        background: $body-color;
+        border-right:1px solid $border-area-color;
+        font-size: $font-size - 2;
+        h4 {
+            padding:20px 20px 10px 20px;
+            font-size: $font-size;
+        }
+        .menulist {     
+            color: inherit;
+            display: flex;
+            align-items: center;
+            padding:10px 20px;
+            cursor: pointer;
+            img {
+                width:40px;
+                height: 40px;
+                margin-right:10px;
+            }
+            span {
+                flex:1;
+            }
+            &.active {
+                background: darken($grey,4%);
+            }
+        }
+    }
+}
+
+
+.containerRight {
+    flex:1;
+    border-right:1px solid $grey;
+    padding: 15px 15px 40px 15px;
+    overflow: hidden;
+}
+.songsList {
+    li {
+        align-items: center;
+        img {
+            width:50px;
+            height:50px;
+            margin-right:10px;
+        }
+    }
+}
+
+.songlistcomponent{
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            display:block;
+            padding:0;
+            margin: 21px 0px 0 0;
+            width:140px;
+            > * {
+                display:block;
+                line-height:20px;
+            }
+            &:nth-child(even) {
+                background:none;
+            }
+            .pic {
+                width:100%;
+                height:140px;
+                border:1px solid $grey;
+                margin-bottom:5px;
+            }
+            .name,
+            span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .nickname {
+                font-size:$font-size - 2;
+                color:$font-detail-color;
+            }
+            .count,
+            .bookcount,
+            .playcount {
+                display:none;
+            }
+        }
+    }
+}
+
+.area {
+    width: 1040px;
+    margin:auto;
+    background: $white;
+    border-color:$border-area-color;
+    border-width:0 1px;
+    border-style: solid;
+    margin-right: 125px;
+     
+}
+
+@media screen and (max-width:768px) {
+    .area {
+        width: 100%;
+        border:0;
+    }
+}
+
+#MVComponent{
+    li {
+        display:block;
+        padding:0;
+        margin: 21px 0px 0 0;
+        width:140px;
+        > * {
+            display:block;
+            line-height:20px;
+        }
+        &:nth-child(even) {
+            background:none;
+        }
+        span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+}
+}
