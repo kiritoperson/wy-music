@@ -1,7 +1,7 @@
 <template>
     <div id="BannerComponent">
         <el-carousel class="container" :interval="5000" arrow="always">
-            <el-carousel-item class="slide" :style="{ backgroundColor: activeColor}" v-for="(item,index) in toBanner" :key="index">
+            <el-carousel-item class="slide" ref="elMain" v-bind:style="elMain" v-for="(item,index) in toBanner" :key="index">
             <img :src="item.imageUrl">
             </el-carousel-item>
         </el-carousel>
@@ -10,31 +10,40 @@
 
 
 <script>
-import FastAverageColor from 'fast-average-color/dist/index.es6';
+import FastAverageColor from 'fast-average-color';
 
     export default {
         name:"BannerComponent",
         props:['toBanner'],
         data() {
             return{
-            activeColor: 'red'
+                 elMain: {
+            background: "#FF0000"
+                        },
             }
         },
         computed:{
 
         },
-        methods: {
-            FastAverageColor,
-            AverageColor: function() {
-                const fac = new FastAverageColor();
-                const activeColor = fac.getColor();
-                this.$nextTick(function(){
-                    console.log(this.$el.activeColor);
-                })
-                return data.activeColor = color;
-            },
-        }
+        
+      methods: {
+//动态改变el-main的背景颜色
+changedBgColor(index) {
+
+if (index != 0) {
+
+this.elMain.background = "#FF0000";
+
+} else {
+
+this.elMain.background = "rgb(255,255,255,0)";
+
+}
+},
+
     }
+        }
+    
  
 
 </script>

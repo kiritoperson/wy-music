@@ -5,6 +5,7 @@ export default {
     songs: [], // 歌单
     recommendsong: [], // 推荐歌单
     leaderboards: [], // 排行榜
+    newsongboards: [], // 新歌排行榜
     commentplaylist: [], // 歌单排行榜评论
     commentmusic: [], // 歌曲评论
     lyric: [], // 歌词
@@ -27,6 +28,9 @@ export default {
     },
     GETLEADERBOARDS (state, res) {
       state.leaderboards = res
+    },
+    GETNEWSONGSBOARDS (state, res) {
+      state.newsongboards = res
     },
     GETCOMMENTPLAYLIST (state, res) {
       state.commentplaylist = res
@@ -109,12 +113,22 @@ export default {
             "22": 云音乐ACG音乐榜,
             "23": 云音乐嘻哈榜
          */
-    async getLeaderboardsData ({commit}, {idx}) {
+    async getLeaderboardsData ({commit}, {idx, limit}) {
       let res = await axiosRq('GET', 'top/list', {
-        'idx': idx || 0
+        'idx': idx || 0,
+        'limit': limit || 10
       })
       if (res) {
         commit('GETLEADERBOARDS', res)
+      }
+    },
+    async getNewsongboardsData ({commit}, {idx, limit}) {
+      let res = await axiosRq('GET', 'top/list', {
+        'idx': idx || 0,
+        'limit': limit || 10
+      })
+      if (res) {
+        commit('GETNEWSONGBOARDS', res)
       }
     },
     // 歌单评论

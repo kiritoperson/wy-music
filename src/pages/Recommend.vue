@@ -44,7 +44,10 @@
                             <router-link to="/newAlbum">更多 <i class="el-icon-d-arrow-right"></i></router-link>
                         </span>
                     <div class="wrapcontent" >
-                        <ToplistComponent></ToplistComponent>
+                        <ToplistComponent   :toplistData="leaderBoardsJson.playlist.tracks"
+
+                                            title="toplist">
+                        </ToplistComponent>
                     </div>
                     </div><!-- 榜单结束 -->
 
@@ -98,7 +101,9 @@ export default {
                 'getBannerData',
                 'getRecommendSongsData',
                 'getHotSingersData',
-                'getpersonlizedMvData'
+                'getpersonlizedMvData',
+                'getLeaderboardsData',
+                'getNewsongboardsData'
             ])
         },
     computed: {
@@ -106,15 +111,19 @@ export default {
                 'bannerJson': state => state.banner.banner,
                 'recommendSongJson': state => state.songlist.recommendsong,
                 'hotSingersJson': state => state.singer.hotsingers,
-                'personalizedmvJson': state => state.mv.personalizedmv
+                'personalizedmvJson': state => state.mv.personalizedmv,
+                'leaderBoardsJson' : state => state.songlist.leaderboards,
+                'newsongBoardsJson' : state => state.songlist.newsongboards
             }),
         },
     mounted() {            
             this.getBannerData();//bannner
             this.getRecommendSongsData({'limit':8});//推荐歌曲  
             this.getHotSingersData({'offset':0, 'limit':8});//热门歌手
-             this.getpersonlizedMvData(); //推荐mv        
-        },
+            this.getpersonlizedMvData(); //推荐mv 
+            this.getLeaderboardsData({'idx':3, 'limit':10});
+            this.getNewsongboardsData({'idx':0, 'limit':10});
+}
 }
 </script>
 
